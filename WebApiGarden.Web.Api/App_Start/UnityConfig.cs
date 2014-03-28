@@ -1,5 +1,6 @@
 using Microsoft.Practices.Unity;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Web.Http;
 using Unity.WebApi;
 using WebApiGarden.Web.Api.Models;
@@ -17,7 +18,7 @@ namespace WebApiGarden.Web.Api
             
             // e.g. container.RegisterType<ITestService, TestService>();
 
-            container.RegisterType<DbContext, OrdersContext>();
+            container.RegisterType<IObjectContextAdapter, OrdersContext>();
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

@@ -13,7 +13,7 @@ namespace WebApiGarden.Web.Api
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -25,6 +25,9 @@ namespace WebApiGarden.Web.Api
                 );
 
             // JSON? Don't bother. The client can set that in the Header with the [Accept: application/json] attribute. 
+
+            // Dependency Injection
+            UnityConfig.RegisterComponents();
         }
     }
 }
