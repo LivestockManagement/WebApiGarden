@@ -1,0 +1,3 @@
+An example entity framework set out here...
+http://www.asp.net/web-api/overview/creating-web-apis/using-web-api-with-entity-framework/using-web-api-with-entity-framework,-part-1
+

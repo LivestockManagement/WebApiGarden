@@ -13,5 +13,10 @@ namespace WebApiGarden.Web.Api.Controllers
         { 
             return new string[] { "Values 1", "Values 2"};
         }
+
+        public object Get(int id)
+        {
+            return new { name = "Value", id = id };
+        }
     }
 }

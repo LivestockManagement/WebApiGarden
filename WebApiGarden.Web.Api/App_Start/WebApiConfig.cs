@@ -18,10 +18,9 @@ namespace WebApiGarden.Web.Api
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
+                );
 
-            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
-            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+            // JSON? Don't bother. The client can set that in the Header with the [Accept: application/json] attribute. 
         }
     }
 }
