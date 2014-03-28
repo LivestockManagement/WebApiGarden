@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,8 +52,21 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ProductTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebApiGarden.Business.Products\WebApiGarden.Business.Products.csproj">
+      <Project>{c3dd24d8-2733-4c8f-908a-51870bdc08ef}</Project>
+      <Name>WebApiGarden.Business.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApiGarden.Web.Api\WebApiGarden.Web.Api.csproj">
+      <Project>{5138abfb-cd52-4c04-8a12-eab0c4a5d2e1}</Project>
+      <Name>WebApiGarden.Web.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

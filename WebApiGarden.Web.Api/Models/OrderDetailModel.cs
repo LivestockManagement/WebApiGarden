@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApiGarden.Web.Api.Models
 {
-    public class OrderDetail
+    public class OrderDetailModel
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
@@ -13,7 +13,6 @@ namespace WebApiGarden.Web.Api.Models
         public int ProductId { get; set; }
 
         // Navigation properties
-        public Product Product { get; set; }
-        public Order Order { get; set; }
+        public ProductModel ProductModel { get; set; }
     }
 }

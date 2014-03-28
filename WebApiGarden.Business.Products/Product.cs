@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WebApiGarden.Web.Api.Models
+namespace WebApiGarden.Business.Products
 {
     public class Product
     {
