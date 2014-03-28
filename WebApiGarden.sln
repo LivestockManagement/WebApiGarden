@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8586E688-EADA-4DB2-BA04-137D78E5FBAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{17338458-C708-4164-86E3-ACB31FFFC969}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E257C3E4-D1F6-4DEA-AAFA-323D96137F46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2A191B9A-0832-4857-AB3C-8D6375E7E1DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiGarden.Tests.Api", "WebApiGarden.Tests.Api\WebApiGarden.Tests.Api.csproj", "{51641166-2A4C-4CAC-915D-F85B92F9C292}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiGarden.Web.Api", "WebApiGarden.Web.Api\WebApiGarden.Web.Api.csproj", "{5138ABFB-CD52-4C04-8A12-EAB0C4A5D2E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51641166-2A4C-4CAC-915D-F85B92F9C292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51641166-2A4C-4CAC-915D-F85B92F9C292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51641166-2A4C-4CAC-915D-F85B92F9C292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51641166-2A4C-4CAC-915D-F85B92F9C292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5138ABFB-CD52-4C04-8A12-EAB0C4A5D2E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5138ABFB-CD52-4C04-8A12-EAB0C4A5D2E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5138ABFB-CD52-4C04-8A12-EAB0C4A5D2E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5138ABFB-CD52-4C04-8A12-EAB0C4A5D2E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5138ABFB-CD52-4C04-8A12-EAB0C4A5D2E1} = {E257C3E4-D1F6-4DEA-AAFA-323D96137F46}
+		{51641166-2A4C-4CAC-915D-F85B92F9C292} = {2A191B9A-0832-4857-AB3C-8D6375E7E1DF}
+	EndGlobalSection
+EndGlobal
