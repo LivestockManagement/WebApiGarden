@@ -14,7 +14,12 @@ namespace WebApiGarden.Web.Api.Controllers
 {
     public class ProductsController : ApiController
     {
-        private OrdersContext db = new OrdersContext();
+        private OrdersContext db;
+
+        public ProductsController(OrdersContext ordersContext)
+        {
+            db = ordersContext;
+        }
 
         // GET api/Products
         public IQueryable<Product> GetProducts()
