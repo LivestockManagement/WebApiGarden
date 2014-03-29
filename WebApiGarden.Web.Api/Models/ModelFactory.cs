@@ -18,11 +18,7 @@ namespace WebApiGarden.Web.Api.Models
             _UrlHelper = new UrlHelper(request);
         }
 
-        // Product
-        public ProductModel Create(Product product)
-        {
-            return new ProductModel() { Id = product.Id, Name = product.Name };
-        }
+
 
         // Order
         public OrderModel Create(Order order)
@@ -30,7 +26,7 @@ namespace WebApiGarden.Web.Api.Models
             return new OrderModel()
             {
                 Id = order.Id,
-                Customer = order.Customer,
+                User = Create(order.User),
                 OrderItems = order.OrderItems.Select(x => Create(x)),
                 Url = _UrlHelper.Link("Order", new { orderId = order.Id })
             };
@@ -42,8 +38,6 @@ namespace WebApiGarden.Web.Api.Models
         {
             return new OrderItemModel()
             {
-                ProductId = orderItem.Product.Id,
-                OrderId = orderItem.Order.Id,
                 Id = orderItem.Id,
                 Product = Create(orderItem.Product),
                 Quantity = orderItem.Quantity,
@@ -51,5 +45,29 @@ namespace WebApiGarden.Web.Api.Models
             };
         }
 
+        // Product
+        public ProductModel Create(Product product)
+        {
+            return new ProductModel() { 
+                Id = product.Id, 
+                Name = product.Name,
+                Url = _UrlHelper.Link("Product", new { productId = product.Id })
+            };
+        }
+
+        // User
+        public UserModel Create(User user)
+        {
+            return new UserModel() { Id = user.Id, Name = user.Name };
+        }
+
+
+        internal Product Parse(ProductModel productModel)
+        {
+            return new Product()
+            {
+                Name = productModel.Name
+            };
+        }
     }
 }
