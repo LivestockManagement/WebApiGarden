@@ -24,3 +24,6 @@ Friendly error handling.
 - Leverate HttpStatusCodes in request handlers - when no data is found. HttpStatusCode.NotFound.
 - Response Status. OK. Bad Request. Error. Created. ...
 
+Security.
+- SSL
+- WebAPI SSL validation. Using Filters. RequireHttpsAttribute. Flexible so easy to run on local / dev machines WITHOUT SSL.

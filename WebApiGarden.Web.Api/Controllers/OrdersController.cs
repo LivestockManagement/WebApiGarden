@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApiGarden.Business.Products.Services;
 using WebApiGarden.Business.Purchases;
+using WebApiGarden.Web.Api.Filters;
 using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers

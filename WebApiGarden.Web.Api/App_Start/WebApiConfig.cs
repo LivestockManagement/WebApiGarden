@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebApiGarden.Web.Api.Filters;
 
 
 namespace WebApiGarden.Web.Api
@@ -42,6 +43,12 @@ namespace WebApiGarden.Web.Api
 
             // Dependency Injection
             UnityConfig.RegisterComponents();
+
+#if !DEBUG
+            // Force HTTPS / SSL Everywhere!
+            config.Filters.Add(new RequireHttpsAttribute());
+#endif
+
         }
     }
 }
