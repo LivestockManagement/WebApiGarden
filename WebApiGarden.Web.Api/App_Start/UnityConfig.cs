@@ -1,7 +1,7 @@
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Unity.WebApi;
-using WebApiGarden.Business.Products;
+using WebApiGarden.Business.Purchases;
 
 namespace WebApiGarden.Web.Api
 {
@@ -16,7 +16,7 @@ namespace WebApiGarden.Web.Api
             
             // e.g. container.RegisterType<ITestService, TestService>();
 
-            container.RegisterType<OrderRepository, OrderRepository>();
+            container.RegisterType<OrderRepository, OrderRepository>(new ContainerControlledLifetimeManager());
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

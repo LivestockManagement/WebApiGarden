@@ -4,26 +4,33 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApiGarden.Business.Products;
+using WebApiGarden.Business.Purchases;
 using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
-    public class OrdersController : ApiController
+    public class OrdersController : BaseApiController
     {
-        private OrderRepository _OrderRepository;
-        private ModelFactory _ModelFactory;
-
-        public OrdersController(OrderRepository orderRepository)
+        public OrdersController(OrderRepository orderRepository) 
+            : base(orderRepository)
         {
-            _OrderRepository = orderRepository;
-            _ModelFactory = new ModelFactory();
         }
 
         // GET api/Orders
-        public IEnumerable<OrderModel> GetOrders()
+        public List<OrderModel> GetOrders(int minItems = 0, int maxItems = 10)
         {
-            return _OrderRepository.Orders.Select(x => _ModelFactory.Create(x));
+            var query = _OrderRepository.GetAll();
+
+            return query
+                .Where(x => x.OrderItems.Count >= minItems && x.OrderItems.Count <= maxItems)
+                .Select(x => _ModelFactory.Create(x))
+                .ToList();
+        }
+
+        // GET api/Orders
+        public OrderModel Get(int orderId)
+        {
+            return _ModelFactory.Create(_OrderRepository.Get(orderId));
         }
     }
 }

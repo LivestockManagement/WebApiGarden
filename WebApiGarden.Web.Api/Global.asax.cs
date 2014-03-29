@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
-using WebApiGarden.Business.Products;
+using WebApiGarden.Business.Purchases;
 
 namespace WebApiGarden.Web.Api
 {

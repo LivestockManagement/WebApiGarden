@@ -8,3 +8,13 @@ Models & Entities.
 - Model
 - Model Factory rather than auto mapper, more flexible.
 - Entities / Business Objects
+
+Routes.
+- route paths.
+- constraints.
+- parameters.
+
+
+Identifiers
+- Associations / Actions (e.g. Controller.Get(int id), Controller.Get(int id, int secondid - optional...))
+- Identifiers. Individual object identifier rather than using parameters...?! useful when versioning. (model urls)

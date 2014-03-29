@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{32EEF8A1-94ED-4662-BB08-708D3FB48B25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiGarden.Business.Products", "WebApiGarden.Business.Products\WebApiGarden.Business.Products.csproj", "{C3DD24D8-2733-4C8F-908A-51870BDC08EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiGarden.Business.Purchases", "WebApiGarden.Business.Products\WebApiGarden.Business.Purchases.csproj", "{C3DD24D8-2733-4C8F-908A-51870BDC08EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,9 +18,15 @@ namespace WebApiGarden.Web.Api
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "Order",
+                routeTemplate: "api/bulk/order/{orderId}",
+                defaults: new { controller = "Orders", orderId = RouteParameter.Optional }
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "OrderItem",
+                routeTemplate: "api/bulk/order/{orderId}/item/{orderItemId}",
+                defaults: new { controller = "OrderItems", orderItemId = RouteParameter.Optional }
                 );
 
             // JSON? Don't bother. The client can set that in the Header with the [Accept: application/json] attribute. 

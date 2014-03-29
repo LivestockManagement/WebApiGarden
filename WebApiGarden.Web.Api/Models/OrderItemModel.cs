@@ -5,14 +5,15 @@ using System.Web;
 
 namespace WebApiGarden.Web.Api.Models
 {
-    public class OrderDetailModel
+    public class OrderItemModel
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
         public int OrderId { get; set; }
         public int ProductId { get; set; }
+        public string Url { get; set; }
 
         // Navigation properties
-        public ProductModel ProductModel { get; set; }
+        public ProductModel Product { get; set; }
     }
 }
