@@ -11,9 +11,9 @@ using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
-    public class ProductsController : BaseApiController
+    public class ProductController : BaseApiController
     {
-        public ProductsController(OrderRepository orderRepository)
+        public ProductController(OrderRepository orderRepository)
             : base(orderRepository)
         {
         }

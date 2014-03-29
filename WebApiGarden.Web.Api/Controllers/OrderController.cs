@@ -6,16 +6,18 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApiGarden.Business.Products.Services;
 using WebApiGarden.Business.Purchases;
+using WebApiGarden.Business.Purchases.Entities;
 using WebApiGarden.Web.Api.Filters;
 using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
-    public class OrdersController : BaseApiController
+    [Authorise]
+    public class OrderController : BaseApiController
     {
         private IdentityService _IdentityService;
 
-        public OrdersController(OrderRepository orderRepository, IdentityService identityService) 
+        public OrderController(OrderRepository orderRepository, IdentityService identityService) 
             : base(orderRepository)
         {
             _IdentityService = identityService;
@@ -24,9 +26,7 @@ namespace WebApiGarden.Web.Api.Controllers
         // GET api/order
         public List<OrderModel> GetOrders(int minItems = 0, int maxItems = 10)
         {
-            var query = _OrderRepository.GetAll();
-
-            return query
+            return _OrderRepository.GetOrders(_IdentityService.CurrentUser.Id)
                 .Where(x => x.OrderItems.Count >= minItems && x.OrderItems.Count <= maxItems)
                 .Select(x => _ModelFactory.Create(x))
                 .ToList();
@@ -35,7 +35,9 @@ namespace WebApiGarden.Web.Api.Controllers
         // GET api/order/1
         public OrderModel Get(int orderId)
         {
-            return _ModelFactory.Create(_OrderRepository.Get(orderId));
+            Order order = _OrderRepository.GetOrder(_IdentityService.CurrentUser.Id, orderId);
+
+            return _ModelFactory.Create(order);
         }
 
         // POST api/Orders
