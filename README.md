@@ -51,15 +51,33 @@ Security.
 			- Example header - [ Authorization: Basic SmFzb25BY2Nlc3M6UGFzc3dvcmQwMQ== ]
 		> Token Authentication. (developer app)
 			- Usage sequence.
-				1. [Client] Request Key. (once off request, 3rd party app developer request on registration).
+				-- sign up
+				1. [Developer] Request Key. (once off request, 3rd party app developer request on registration).
 				2. [API] Supply Key and Secret.
-				3. [Client] Request Token. Regular daily process.
+				-- regular usage
+				3. [Developer] Request Token.
 				4. [API] Review Token request and return Token.
-				5. [Client] Use Token with each request. Tokens eventually expire. 2 hrs. 1 day.
+				5. [Developer] Use Token with each request. Tokens eventually expire. 2 hrs. 1 day.
 			- Each client, on registration is given an ApiKey and a Signature which they can use to retrieve a token when needed.
 			- Example Token Request. { "ApiKey": "1", "Signature": "YM6qwvfzDIn3Uvg3xD0Mg5xo98t0FT7qIQ8/M6D4UPU=" }
 			- Use Token example http://localhost:34901/api/order?apikey=1&token=6Eq9ffmBUz+Gwk22DvPYZlFn9c19xgH+aCfIDnRrERk=
-
+		> OAuth (developer)
+			- Allows a developer to build a 3rd party app without them having to collect the users authentication details themselves.
+			- A great way for an app to not rely on the trust of the user. They don't have to worry about their details being exposed to the app / client process.
+			- Usage sequence.
+				-- sign up
+				1. [Developer] Requests API key.
+				2. [API] Returns API Key and Secret.
+				-- regular usage.
+				3. [Developer] Request Token.
+				4. [API] Review Token request and return Token.
+				5. [Developer] Takes token response and redirects use to centralised Auth Uri.
+				6. [API] Display authorise UI.
+				7. [User] Approves and confirms authentication.
+				8. [API] Redirects back to Developer.
+				9. [Developer] Retrieves Access Token via OAuth & Request Token.
+				10. [API] Returns Access Token.
+				11. [Developer] Use Access Token to request data from API.
 }
 
 
