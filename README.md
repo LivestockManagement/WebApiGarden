@@ -93,7 +93,18 @@ Versioning.
 - Custom controller selector?
 - 
 
-Constraints...
+REST Constraints.
+- Client / Server, Stateless server, Cache, Uniform Interface, Layered System, Code on-Demand.
+
+
+Web API 2?
+- What?! we can define the routes directly on the controller...???
+- Involves some nuget and .net framework updates for 2012.
+- Attributed routing. 
+- IHttpActionResult. 
+- Additional versioning considerations.
+- IHttpActionResult
+	* Packaging up common results that are returned across a variety of controls. An alternative to HttpResponseMessage.
 
 
 Authentication vs Authorisation
