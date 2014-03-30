@@ -28,68 +28,52 @@ namespace WebApiGarden.Web.Api.Filters
             repository = new OrderRepository(); // DI?
         }
 
-        
+
         public override void OnAuthorization(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
-            const string APIKEYNAME = "apikey";
-            const string TOKENNAME = "token";
-            var query = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query);
-
-            if (!string.IsNullOrWhiteSpace(query[APIKEYNAME]) && !string.IsNullOrWhiteSpace(query[TOKENNAME]))
+            // don't bother checking if Token Auth is all we need.
+            if (_PerUser)
             {
-
-                var apikey = query[APIKEYNAME];
-                var token = query[TOKENNAME];
-
-                var authToken = repository.AuthTokens.Where(x => x.Token == token & x.Expiration < DateTime.Now).FirstOrDefault();
-
-                if (authToken != null && authToken.Developer.AppId == apikey && authToken.Expiration > DateTime.UtcNow)
+                // User based authorisation
+                if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
                 {
+                    return;
+                }
 
-                    // don't bother checking if Token Auth is all we need.
-                    if (_PerUser)
+                var authHeader = actionContext.Request.Headers.Authorization;
+                if (authHeader != null)
+                {
+                    if (authHeader.Scheme.Equals("basic", System.StringComparison.OrdinalIgnoreCase) &&
+                        !string.IsNullOrWhiteSpace(authHeader.Parameter))
                     {
-                        // User based authorisation
-                        if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+                        // Valid!
+                        var rawCredentials = authHeader.Parameter;
+                        var encoding = Encoding.GetEncoding("iso-8859-1");
+                        var credentials = encoding.GetString(Convert.FromBase64String(rawCredentials));
+                        var split = credentials.Split(':');
+                        var username = split[0];
+                        var password = split[1];
+
+
+                        // validate account - WebSecurity.Initialized.
+                        var user = repository.Users.Find(x => x.Username == username && x.Password == password);
+
+                        if (user != null)
                         {
+                            var principal = new GenericPrincipal(new GenericIdentity(user.Username), null);
+                            Thread.CurrentPrincipal = principal;
                             return;
                         }
-
-                        var authHeader = actionContext.Request.Headers.Authorization;
-                        if (authHeader != null)
-                        {
-                            if (authHeader.Scheme.Equals("basic", System.StringComparison.OrdinalIgnoreCase) &&
-                                !string.IsNullOrWhiteSpace(authHeader.Parameter))
-                            {
-                                // Valid!
-                                var rawCredentials = authHeader.Parameter;
-                                var encoding = Encoding.GetEncoding("iso-8859-1");
-                                var credentials = encoding.GetString(Convert.FromBase64String(rawCredentials));
-                                var split = credentials.Split(':');
-                                var username = split[0];
-                                var password = split[1];
-
-
-                                // validate account - WebSecurity.Initialized.
-                                var user = repository.Users.Find(x => x.Username == username && x.Password == password);
-
-                                if (user != null)
-                                {
-                                    var principal = new GenericPrincipal(new GenericIdentity(user.Username), null);
-                                    Thread.CurrentPrincipal = principal;
-                                    return;
-                                }
-                            }
-                        }
                     }
-                    else
-                    {
-                        return;
-                    }
-
-                    HandleUnAuthorised(actionContext);
                 }
             }
+            else
+            {
+                return;
+            }
+
+            HandleUnAuthorised(actionContext);
+
         }
 
         void HandleUnAuthorised(System.Web.Http.Controllers.HttpActionContext actionContext)

@@ -12,6 +12,7 @@ using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
+    [Authorise] // Requires valid token & authenticated user.
     public class OrderItemController : BaseApiController
     {
         private IdentityService _IdentityService;
