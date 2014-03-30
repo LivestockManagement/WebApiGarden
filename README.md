@@ -78,9 +78,15 @@ Security.
 				9. [Developer] Retrieves Access Token via OAuth & Request Token.
 				10. [API] Returns Access Token.
 				11. [Developer] Use Access Token to request data from API.
-}
 
+Unit Testing.
+- web api token authentication.
+- web api basic authentication.
+- control parameters.
 
+Versioning...
+
+Constraints...
 
 
 Authentication vs Authorisation
