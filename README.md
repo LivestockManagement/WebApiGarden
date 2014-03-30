@@ -42,14 +42,14 @@ Security.
 	* Typically Basic authentication is used to track the user, Token auth is used to track the 3rd party application.
 	* Implementations.
 		> ASP.NET Authentication. Good enough for a base website. [Authorize]. Simply implemented with webforms and sessions. (most likely not useful). Difficult to use with .Net clients.
-		> Basic Authentication. Allows authentication without webforms or online interface. Useful for a 3rd party app. Credentials. Headers.
+		> Basic Authentication. (user) Allows authentication without webforms or online interface. Useful for a 3rd party app. Credentials. Headers.
 			- Filter. AuthoriseFilterAttribute
 			- No encryption. Straight username and password. Requires SSL.
 			- built in? WebMatrix.WebData.WebSecurity.Login()... or custom. Relies on standard asp.net roles and membership database.
 			- minimal effort when authenticating JS client.
 			- Base64 encoded username / password. 
 			- Example header - [ Authorization: Basic SmFzb25BY2Nlc3M6UGFzc3dvcmQwMQ== ]
-		> Token Authentication.
+		> Token Authentication. (developer app)
 			- Usage sequence.
 				1. [Client] Request Key. (once off request, 3rd party app developer request on registration).
 				2. [API] Supply Key and Secret.
@@ -57,7 +57,10 @@ Security.
 				4. [API] Review Token request and return Token.
 				5. [Client] Use Token with each request. Tokens eventually expire. 2 hrs. 1 day.
 			- Each client, on registration is given an ApiKey and a Signature which they can use to retrieve a token when needed.
-			- Example Token Request. { "apikey" : "TXlGaXJzdEFwcElk", "signature" : "TXlGaXJzdFNlY3JldA==" }
+			- Example Token Request. { "ApiKey": "1", "Signature": "YM6qwvfzDIn3Uvg3xD0Mg5xo98t0FT7qIQ8/M6D4UPU=" }
+			- Use Token example http://localhost:34901/api/order?apikey=1&token=6Eq9ffmBUz+Gwk22DvPYZlFn9c19xgH+aCfIDnRrERk=
+
+}
 
 
 

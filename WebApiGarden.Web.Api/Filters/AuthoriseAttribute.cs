@@ -33,7 +33,7 @@ namespace WebApiGarden.Web.Api.Filters
             const string APIKEYNAME = "apikey";
             const string TOKENNAME = "token";
 
-            var query = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query);
+            var query = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query, Encoding.UTF8);
 
             if (!string.IsNullOrWhiteSpace(query[APIKEYNAME]) &&
               !string.IsNullOrWhiteSpace(query[TOKENNAME]))
@@ -95,7 +95,10 @@ namespace WebApiGarden.Web.Api.Filters
         void HandleUnAuthorised(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
             actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
-            actionContext.Response.Headers.Add("WWW-Authenticate", "Basic Scheme='NLIS' location='http://nlisgetauthenticated.com/info'");
+            if (_PerUser) 
+            { 
+                actionContext.Response.Headers.Add("WWW-Authenticate", "Basic Scheme='NLIS' location='http://nlisgetauthenticated.com/info'");
+            }
         }
     }
 }
