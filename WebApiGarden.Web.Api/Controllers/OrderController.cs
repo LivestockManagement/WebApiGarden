@@ -12,7 +12,6 @@ using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
-    [Authorise] // with a valid token & a valid user account you can access this controller.
     public class OrderController : BaseApiController
     {
         private IdentityService _IdentityService;
@@ -24,10 +23,9 @@ namespace WebApiGarden.Web.Api.Controllers
         }
 
         // GET api/order
-        public List<OrderModel> GetOrders(int minItems = 0, int maxItems = 10)
+        public List<OrderModel> Get()
         {
             return _OrderRepository.GetOrders(_IdentityService.CurrentUser.Id)
-                .Where(x => x.OrderItems.Count >= minItems && x.OrderItems.Count <= maxItems)
                 .Select(x => _ModelFactory.Create(x))
                 .ToList();
         }
@@ -35,7 +33,7 @@ namespace WebApiGarden.Web.Api.Controllers
         // GET api/order/1
         public OrderModel Get(int orderId)
         {
-            Order order = _OrderRepository.GetOrder(_IdentityService.CurrentUser.Id, orderId);
+            Order order = _OrderRepository.GetOrder(orderId, _IdentityService.CurrentUser.Id);
 
             return _ModelFactory.Create(order);
         }

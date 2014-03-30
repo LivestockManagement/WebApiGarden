@@ -44,7 +44,7 @@ namespace WebApiGarden.Web.Api.Controllers
             try
             {
                 Product product = _ModelFactory.Parse(productModel);
-                _OrderRepository.Add(product);
+                _OrderRepository.AddProduct(product);
                 ProductModel newProductModel = _ModelFactory.Create(product);
 
                 return Request.CreateResponse(HttpStatusCode.Created, newProductModel);

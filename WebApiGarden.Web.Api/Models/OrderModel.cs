@@ -11,6 +11,6 @@ namespace WebApiGarden.Web.Api.Models
         public UserModel User { get; set; }
         public string Url { get; set; }
 
-        public IEnumerable<OrderItemModel> OrderItems { get; set; }
+        public IEnumerable<OrderItemModel> Items { get; set; }
     }
 }
