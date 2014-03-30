@@ -56,8 +56,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApiGarden.Business.Products\WebApiGarden.Business.Purchases.csproj">
-      <Project>{c3dd24d8-2733-4c8f-908a-51870bdc08ef}</Project>
+    <ProjectReference Include="..\WebApiGarden.Business.Purchases\WebApiGarden.Business.Purchases.csproj">
+      <Project>{2f9d2e7e-6c5e-40d5-af28-42d805b04c7b}</Project>
       <Name>WebApiGarden.Business.Purchases</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebApiGarden.Web.Api\WebApiGarden.Web.Api.csproj">

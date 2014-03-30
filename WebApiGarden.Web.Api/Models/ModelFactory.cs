@@ -41,7 +41,7 @@ namespace WebApiGarden.Web.Api.Models
                 Id = orderItem.Id,
                 Product = Create(orderItem.Product),
                 Quantity = orderItem.Quantity,
-                Url = _UrlHelper.Link("OrderItem", new { orderId = orderItem.Order.Id, orderItemId = orderItem.Id })
+                Url = _UrlHelper.Link("OrderItem", new { orderItemId = orderItem.Id })
             };
         }
 

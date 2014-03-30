@@ -41,9 +41,9 @@ namespace WebApiGarden.Web.Api.Filters
                 var apikey = query[APIKEYNAME];
                 var token = query[TOKENNAME];
 
-                var authToken = repository.Tokens.Where(x => x.Token == token & x.Expiration < DateTime.Now).FirstOrDefault();
+                var authToken = repository.AuthTokens.Where(x => x.Token == token & x.Expiration < DateTime.Now).FirstOrDefault();
 
-                if (authToken != null && authToken.ApiDeveloper.AppId == apikey && authToken.Expiration > DateTime.UtcNow)
+                if (authToken != null && authToken.Developer.AppId == apikey && authToken.Expiration > DateTime.UtcNow)
                 {
 
                     // don't bother checking if Token Auth is all we need.
