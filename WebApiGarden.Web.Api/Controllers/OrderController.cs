@@ -26,7 +26,7 @@ namespace WebApiGarden.Web.Api.Controllers
         // GET api/order
         public List<OrderModel> Get()
         {
-            return _OrderRepository.GetOrders(_IdentityService.CurrentUser.Id)
+            return _OrderRepository.GetOrders(_IdentityService.CurrentUser)
                 .Select(x => _ModelFactory.Create(x))
                 .ToList();
         }
@@ -34,7 +34,7 @@ namespace WebApiGarden.Web.Api.Controllers
         // GET api/order/1
         public OrderModel Get(int orderId)
         {
-            Order order = _OrderRepository.GetOrder(orderId, _IdentityService.CurrentUser.Id);
+            Order order = _OrderRepository.GetOrder(orderId, _IdentityService.CurrentUser);
 
             return _ModelFactory.Create(order);
         }

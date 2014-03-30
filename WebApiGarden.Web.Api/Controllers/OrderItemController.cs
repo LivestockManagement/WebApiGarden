@@ -25,14 +25,14 @@ namespace WebApiGarden.Web.Api.Controllers
 
         public List<OrderItemModel> Get(int orderId)
         {
-            Order order = _OrderRepository.GetOrder(orderId, _IdentityService.CurrentUser.Id);
+            Order order = _OrderRepository.GetOrder(orderId, _IdentityService.CurrentUser);
 
             return order.Items.Select(x => _ModelFactory.Create(x)).ToList();
         }
 
         public OrderItemModel Get(int orderId, int orderItemId)
         {
-            Order order = _OrderRepository.GetOrder(orderId, _IdentityService.CurrentUser.Id);
+            Order order = _OrderRepository.GetOrder(orderId, _IdentityService.CurrentUser);
             OrderItem orderItem = order.Items.Where(x => x.Id == orderItemId).Single();
 
             return _ModelFactory.Create(orderItem);

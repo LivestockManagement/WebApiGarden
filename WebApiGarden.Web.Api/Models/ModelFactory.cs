@@ -11,14 +11,20 @@ namespace WebApiGarden.Web.Api.Models
 {
     public class ModelFactory
     {
-        private UrlHelper _UrlHelper;
+        private WebApiUrlHelper _WebApiUrlHelper;
 
         public ModelFactory(HttpRequestMessage request)
         {
-            _UrlHelper = new UrlHelper(request);
+            if (request == null)
+            {
+                _WebApiUrlHelper = new WebApiUrlHelper();
+            }
+            else
+            {
+                _WebApiUrlHelper = new WebApiUrlHelper(request);
+            }
+            
         }
-
-
 
         // Order
         public OrderModel Create(Order order)
@@ -28,7 +34,7 @@ namespace WebApiGarden.Web.Api.Models
                 Id = order.Id,
                 User = Create(order.User),
                 Items = order.Items.Select(x => Create(x)),
-                Url = _UrlHelper.Link("Order", new { orderId = order.Id })
+                Url = _WebApiUrlHelper.Link("Order", new { orderId = order.Id })
             };
 
         }
@@ -41,7 +47,7 @@ namespace WebApiGarden.Web.Api.Models
                 Id = orderItem.Id,
                 Product = Create(orderItem.Product),
                 Quantity = orderItem.Quantity,
-                Url = _UrlHelper.Link("OrderItem", new { orderItemId = orderItem.Id })
+                Url = _WebApiUrlHelper.Link("OrderItem", new { orderItemId = orderItem.Id })
             };
         }
 
@@ -51,7 +57,7 @@ namespace WebApiGarden.Web.Api.Models
             return new ProductModel() { 
                 Id = product.Id, 
                 Name = product.Name,
-                Url = _UrlHelper.Link("Product", new { productId = product.Id })
+                Url = _WebApiUrlHelper.Link("Product", new { productId = product.Id })
             };
         }
 

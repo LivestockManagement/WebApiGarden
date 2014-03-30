@@ -124,6 +124,7 @@
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\TokenRequestModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\WebApiUrlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
