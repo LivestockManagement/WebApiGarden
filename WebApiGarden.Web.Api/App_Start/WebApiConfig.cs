@@ -7,6 +7,7 @@ using System.Net.Http.Formatting;
 using System.Web.Http;
 using WebApiGarden.Web.Api.Filters;
 using WebApiContrib.Formatting.Jsonp;
+using WebApiGarden.Web.Api.App_Start;
 
 namespace WebApiGarden.Web.Api
 {
@@ -39,11 +40,14 @@ namespace WebApiGarden.Web.Api
                 defaults: new { controller = "OrderItem", orderItemId = RouteParameter.Optional }
                 );
 
+            config.Routes.MapHttpRoute(
+                name: "Token",
+                routeTemplate: "api/token",
+                defaults: new { controller = "Token" }
+                );
+
             // Add support for JSONP.
             config.AddJsonpFormatter();
-            
-            // Dependency Injection
-            UnityConfig.RegisterComponents();
 
 #if !DEBUG
             // Force HTTPS / SSL Everywhere!

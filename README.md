@@ -22,6 +22,7 @@ Identifiers
 
 Filters
 - Filter dependency injection.
+- Unity WebApi Bootstrapper.
 
 Friendly error handling.
 - HttpResponseMessage wrapper.

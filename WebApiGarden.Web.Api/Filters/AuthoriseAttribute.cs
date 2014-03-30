@@ -19,61 +19,77 @@ namespace WebApiGarden.Web.Api.Filters
     public class AuthoriseAttribute : AuthorizationFilterAttribute
     {
         [Dependency]
-        public OrderRepository repository { get; set; }
+        public OrderRepository _OrderRepository { get; set; }
         private bool _PerUser;
 
         public AuthoriseAttribute(bool perUser = true)
         {
             _PerUser = perUser;
-            repository = new OrderRepository(); // DI?
         }
 
 
         public override void OnAuthorization(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
-            // don't bother checking if Token Auth is all we need.
-            if (_PerUser)
+            const string APIKEYNAME = "apikey";
+            const string TOKENNAME = "token";
+
+            var query = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query);
+
+            if (!string.IsNullOrWhiteSpace(query[APIKEYNAME]) &&
+              !string.IsNullOrWhiteSpace(query[TOKENNAME]))
             {
-                // User based authorisation
-                if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
-                {
-                    return;
-                }
 
-                var authHeader = actionContext.Request.Headers.Authorization;
-                if (authHeader != null)
+                var apikey = query[APIKEYNAME];
+                var token = query[TOKENNAME];
+
+                var authToken = _OrderRepository.GetAuthToken(token);
+
+                if (authToken != null && authToken.Developer.AppId == apikey && authToken.Expiration > DateTime.UtcNow)
                 {
-                    if (authHeader.Scheme.Equals("basic", System.StringComparison.OrdinalIgnoreCase) &&
-                        !string.IsNullOrWhiteSpace(authHeader.Parameter))
+
+                    // don't bother checking if Token Auth is all we need.
+                    if (_PerUser)
                     {
-                        // Valid!
-                        var rawCredentials = authHeader.Parameter;
-                        var encoding = Encoding.GetEncoding("iso-8859-1");
-                        var credentials = encoding.GetString(Convert.FromBase64String(rawCredentials));
-                        var split = credentials.Split(':');
-                        var username = split[0];
-                        var password = split[1];
-
-
-                        // validate account - WebSecurity.Initialized.
-                        var user = repository.Users.Find(x => x.Username == username && x.Password == password);
-
-                        if (user != null)
+                        // User based authorisation
+                        if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
                         {
-                            var principal = new GenericPrincipal(new GenericIdentity(user.Username), null);
-                            Thread.CurrentPrincipal = principal;
                             return;
                         }
+
+                        var authHeader = actionContext.Request.Headers.Authorization;
+                        if (authHeader != null)
+                        {
+                            if (authHeader.Scheme.Equals("basic", System.StringComparison.OrdinalIgnoreCase) &&
+                                !string.IsNullOrWhiteSpace(authHeader.Parameter))
+                            {
+                                // Valid!
+                                var rawCredentials = authHeader.Parameter;
+                                var encoding = Encoding.GetEncoding("iso-8859-1");
+                                var credentials = encoding.GetString(Convert.FromBase64String(rawCredentials));
+                                var split = credentials.Split(':');
+                                var username = split[0];
+                                var password = split[1];
+
+
+                                // validate account - WebSecurity.Initialized.
+                                var user = _OrderRepository.Users.Find(x => x.Username == username && x.Password == password);
+
+                                if (user != null)
+                                {
+                                    var principal = new GenericPrincipal(new GenericIdentity(user.Username), null);
+                                    Thread.CurrentPrincipal = principal;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return;
                     }
                 }
             }
-            else
-            {
-                return;
-            }
-
             HandleUnAuthorised(actionContext);
-
         }
 
         void HandleUnAuthorised(System.Web.Http.Controllers.HttpActionContext actionContext)
