@@ -12,7 +12,6 @@ using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
-    [Authorise(false)] // with a valid token anyone can access this controller.
     public class ProductController : BaseApiController
     {
         public ProductController(OrderRepository orderRepository)
