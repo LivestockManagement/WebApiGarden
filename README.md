@@ -95,7 +95,7 @@ Versioning.
 
 REST Constraints.
 - Client / Server, Stateless server, Cache, Uniform Interface, Layered System, Code on-Demand.
-
+- Brought design concept considerations to meet REST standards.
 
 Web API 2?
 - What?! we can define the routes directly on the controller...???
@@ -105,6 +105,8 @@ Web API 2?
 - Additional versioning considerations.
 - IHttpActionResult
 	* Packaging up common results that are returned across a variety of controls. An alternative to HttpResponseMessage.
+	* Easier to test.
+- Simplified CORS support, something that is becoming more and more important.
 
 
 Authentication vs Authorisation
