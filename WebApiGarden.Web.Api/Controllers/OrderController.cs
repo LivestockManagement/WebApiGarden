@@ -12,7 +12,7 @@ using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
-    [Authorise]
+    [Authorise] // with a valid token & a valid user account you can access this controller.
     public class OrderController : BaseApiController
     {
         private IdentityService _IdentityService;

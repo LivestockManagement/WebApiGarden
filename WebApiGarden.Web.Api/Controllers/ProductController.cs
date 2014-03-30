@@ -7,10 +7,12 @@ using System.Web.Http;
 using WebApiGarden.Business.Products.Services;
 using WebApiGarden.Business.Purchases;
 using WebApiGarden.Business.Purchases.Entities;
+using WebApiGarden.Web.Api.Filters;
 using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
+    [Authorise(false)] // with a valid token anyone can access this controller.
     public class ProductController : BaseApiController
     {
         public ProductController(OrderRepository orderRepository)
