@@ -2,7 +2,7 @@ using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using WebApiGarden.Business.Purchases;
-using WebApiGarden.Business.Purchases.Services;
+using WebApiGarden.Web.Api.Services;
 
 namespace WebApiGarden.Web.Api.App_Start
 {

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApiGarden.Business.Purchases.Services;
 using WebApiGarden.Business.Purchases;
 using WebApiGarden.Business.Purchases.Entities;
 using WebApiGarden.Web.Api.Filters;
 using WebApiGarden.Web.Api.Models;
+using WebApiGarden.Web.Api.Services;
 
 namespace WebApiGarden.Web.Api.Controllers
 {

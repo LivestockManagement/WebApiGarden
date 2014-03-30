@@ -1,4 +1,8 @@
-﻿using System.Web.Http.Filters;
+﻿#if DEBUG
+#define DISABLE_SECURITY
+#endif
+
+using System.Web.Http.Filters;
 using System.Net.Http;
 using System.Net;
 using System;
@@ -30,10 +34,11 @@ namespace WebApiGarden.Web.Api.Filters
 
         public override void OnAuthorization(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
+#if !DISABLE_SECURITY
             const string APIKEYNAME = "apikey";
             const string TOKENNAME = "token";
 
-            var query = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query, Encoding.UTF8);
+             var query = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query, Encoding.UTF8);
 
             if (!string.IsNullOrWhiteSpace(query[APIKEYNAME]) &&
               !string.IsNullOrWhiteSpace(query[TOKENNAME]))
@@ -90,6 +95,7 @@ namespace WebApiGarden.Web.Api.Filters
                 }
             }
             HandleUnAuthorised(actionContext);
+#endif
         }
 
         void HandleUnAuthorised(System.Web.Http.Controllers.HttpActionContext actionContext)

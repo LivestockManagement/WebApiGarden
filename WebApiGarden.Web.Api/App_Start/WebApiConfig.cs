@@ -8,6 +8,8 @@ using System.Web.Http;
 using WebApiGarden.Web.Api.Filters;
 using WebApiContrib.Formatting.Jsonp;
 using WebApiGarden.Web.Api.App_Start;
+using System.Web.Http.Dispatcher;
+using WebApiGarden.Web.Api.Services;
 
 namespace WebApiGarden.Web.Api
 {
@@ -48,6 +50,9 @@ namespace WebApiGarden.Web.Api
 
             // Add support for JSONP.
             config.AddJsonpFormatter();
+
+            // Replace controller configuration.
+            config.Services.Replace(typeof(IHttpControllerSelector), new ControllerSelector(config));
 
 #if !DEBUG
             // Force HTTPS / SSL Everywhere!

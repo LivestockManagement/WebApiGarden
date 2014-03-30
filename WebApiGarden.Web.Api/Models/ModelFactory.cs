@@ -61,6 +61,18 @@ namespace WebApiGarden.Web.Api.Models
             };
         }
 
+        // ProductV2
+        public ProductV2Model CreateV2(Product product)
+        {
+            return new ProductV2Model()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Url = _WebApiUrlHelper.Link("Product", new { productId = product.Id }),
+                Price = product.Price
+            };
+        }
+
         // User
         public UserModel Create(User user)
         {

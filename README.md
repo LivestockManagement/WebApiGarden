@@ -84,7 +84,14 @@ Unit Testing.
 - web api basic authentication.
 - control parameters.
 
-Versioning...
+Versioning.
+- Routing / Query string / Headers / MediaTypes.
+- The system will continue to evolve but our early APIs won't. Once they hit production they won't change. It's going to get complicated.
+- Old client apps may not evolve.
+- Namespacing... ? ControllerV2 / V2.Controller...?
+- Ensuring the most recent version is the default.
+- Custom controller selector?
+- 
 
 Constraints...
 

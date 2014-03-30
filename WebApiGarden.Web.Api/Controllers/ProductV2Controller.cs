@@ -11,40 +11,40 @@ using WebApiGarden.Web.Api.Models;
 
 namespace WebApiGarden.Web.Api.Controllers
 {
-    public class ProductController : BaseApiController
+    public class ProductV2Controller : BaseApiController
     {
-        public ProductController(OrderRepository orderRepository)
+        public ProductV2Controller(OrderRepository orderRepository)
             : base(orderRepository)
         {
         }
 
         // GET api/product
-        public List<ProductModel> Get()
+        public List<ProductV2Model> Get()
         {
             return _OrderRepository.Products
-                .Select(x => _ModelFactory.Create(x))
+                .Select(x => _ModelFactory.CreateV2(x))
                 .ToList();
         }
 
         // GET api/product/1
-        public ProductModel Get(int productId)
+        public ProductV2Model Get(int productId)
         {
             return _OrderRepository.Products
                 .Where(x => x.Id == productId)
-                .Select(x => _ModelFactory.Create(x))
+                .Select(x => _ModelFactory.CreateV2(x))
                 .Single();
         }
 
         // POST api/product 
         // Example json [ { "Name": "Pineapple" } ]
-        public HttpResponseMessage Post([FromBody]ProductModel productModel)
+        public HttpResponseMessage Post([FromBody]ProductV2Model productModel)
         {
 
             try
             {
                 Product product = _ModelFactory.Parse(productModel);
                 _OrderRepository.AddProduct(product);
-                ProductModel newProductModel = _ModelFactory.Create(product);
+                ProductV2Model newProductModel = _ModelFactory.CreateV2(product);
 
                 return Request.CreateResponse(HttpStatusCode.Created, newProductModel);
             }

@@ -21,7 +21,7 @@ namespace WebApiGarden.Web.Api.Models
         public override string Link(string routeName, IDictionary<string, object> routeValues)
         {
             string link = "";
-            if (this.Request == null) { 
+            if (this.Request != null) {
                 link = base.Link(routeName, routeValues);
             }
             return link;

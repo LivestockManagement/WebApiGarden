@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Web.Http;
 using WebApiGarden.Web.Api.Controllers;
-using WebApiGarden.Business.Purchases.Services;
 using WebApiGarden.Business.Purchases.Entities;
 using WebApiGarden.Web.Api.Models;
 using System.Security.Principal;
@@ -15,6 +14,7 @@ using System.Net.Http;
 using System.Web.Http.Hosting;
 using System.Web.Http.Routing;
 using System.Web.Http.Controllers;
+using WebApiGarden.Web.Api.Services;
 
 namespace WebApiGarden.Tests.Api
 {
