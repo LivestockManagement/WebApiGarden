@@ -69,5 +69,14 @@ namespace WebApiGarden.Web.Api.Models
                 Name = productModel.Name
             };
         }
+
+        internal AuthTokenModel Create(AuthToken authToken)
+        {
+            return new AuthTokenModel()
+            {
+                Token = authToken.Token,
+                Expiration = authToken.Expiration
+            };
+        }
     }
 }
