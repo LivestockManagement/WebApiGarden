@@ -1,0 +1,10 @@
+POST /api/token HTTP/1.1
+User-Agent: Fiddler
+Host: localhost:34901
+Content-Length: 81
+Content-Type: application/json
+
+{
+"ApiKey": "1",
+"Signature": "YM6qwvfzDIn3Uvg3xD0Mg5xo98t0FT7qIQ8/M6D4UPU="
+}

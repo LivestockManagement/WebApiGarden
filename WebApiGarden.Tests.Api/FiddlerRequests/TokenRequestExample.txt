@@ -1,0 +1,6 @@
+GET /api/order?apikey=1&token=6Eq9ffmBUz%2BGwk22DvPYZlFn9c19xgH%2BaCfIDnRrERk= HTTP/1.1
+User-Agent: Fiddler
+Host: localhost:34901
+Content-Length: 78
+
+{ "ApiKey": "1", "Signature": "YM6qwvfzDIn3Uvg3xD0Mg5xo98t0FT7qIQ8/M6D4UPU=" }
